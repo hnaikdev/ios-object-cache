@@ -1,0 +1,15 @@
+{
+  "originHash" : "dcfc0485756b65fc5a0cdf88e4fbe22768787625f100666bb32b58b519f2d2ef",
+  "pins" : [
+    {
+      "identity" : "ios-object-cache",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/hnaikdev/ios-object-cache.git",
+      "state" : {
+        "branch" : "main",
+        "revision" : "a50a49b72472ec814093ab14663e4e2ce0b9bb75"
+      }
+    }
+  ],
+  "version" : 3
+}
