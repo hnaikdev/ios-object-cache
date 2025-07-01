@@ -10,7 +10,6 @@ import SwiftUI
 struct ContentView: View {
     
     @ObservedObject var viewModel: UserViewModel
-    @State private var progress = 0.6
     @State var showProgress: Bool = false
     
     init(viewModel: UserViewModel) {
@@ -60,6 +59,5 @@ struct ContentView: View {
                 
             }
         }
-        .navigationTitle(Text("Vivaan"))
     }
 }

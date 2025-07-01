@@ -22,25 +22,35 @@ class UserViewModel: ObservableObject {
     let service: APIServiceProtocol
     @Published var users: [UserElement] = []
     @Published var apiError: APIServiceError? = nil
+    var pppp = [UserElement]()
     
     init(service: APIServiceProtocol) {
         self.service = service
     }
     
-    @MainActor
     func fetchUsers() async {
         do {
             if users.isEmpty {
                 let result = try await service.fetchData()
-                users = result.map({ generateViewModel(user: $0) })
+                let elements = result.map({ generateViewModel(user: $0) })
+                await MainActor.run {
+                    users = elements
+                }
             } else {
                 let keys = users.map({ $0.id })
-                users = try await service.readFromCache(for: keys).map({ generateViewModel(user: $0) })
+                let elements = try await service.readFromCache(for: keys).map({ generateViewModel(user: $0) })
+                await MainActor.run {
+                    users = elements
+                }
             }
         } catch let error as APIServiceError {
-            apiError = error
+            await MainActor.run {
+                apiError = error
+            }
         } catch  {
-            users = []
+            await MainActor.run {
+                users = []
+            }
         }
     }
     
