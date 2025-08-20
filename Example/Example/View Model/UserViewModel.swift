@@ -22,7 +22,6 @@ class UserViewModel: ObservableObject {
     let service: APIServiceProtocol
     @Published var users: [UserElement] = []
     @Published var apiError: APIServiceError? = nil
-    var pppp = [UserElement]()
     
     init(service: APIServiceProtocol) {
         self.service = service
